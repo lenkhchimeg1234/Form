@@ -13,11 +13,12 @@ export const StepOne = (props) => {
   const [usererror, setUsererror] = useState("");
 
   const handleFirst = (value) => {
+    const errors = {};
     if (!nameRegex.test(value) || value.length === 0) {
-      setFirsterror("First name cannot contain special characters or numbers.");
-    } else {
-      setFirsterror("");
+      errors.firstName =
+        "First name cannot contain special characters or numbers.";
     }
+    return errors;
   };
   const handleLast = (value) => {
     if (!nameRegex.test(value) || value.length === 0) {
@@ -45,11 +46,25 @@ export const StepOne = (props) => {
       return true;
     }
   };
-  useEffect(() => {
-    handleFirst("");
-    handleLast("");
-    handleUser("");
-  }, []);
+
+  const handleFirstStepSubmitButton = () => {
+    const firstNameError = handleFirst(firstname);
+    console.log("hello");
+    if (Object.values(firstNameError).length > 0) {
+      setFirsterror(firstNameError.firstName);
+    } else {
+      setFirsterror("");
+    }
+
+    // if()
+
+    // handleStepForward();
+  };
+  // useEffect(() => {
+  //   handleFirst("");
+  //   handleLast("");
+  //   handleUser("");
+  // }, []);
 
   return (
     <div className="flex flex-col justify-between items-center w-[480px] h-[655px] bg-white p-8 box-border">
@@ -69,7 +84,7 @@ export const StepOne = (props) => {
             type="text"
             value={firstname}
             onChange={(e) => {
-              setFirstname(e.target.value), handleFirst(e.target.value);
+              setFirstname(e.target.value);
             }}
           />
           {firsterror && <div className="text-red-600">{firsterror}</div>}
@@ -106,9 +121,9 @@ export const StepOne = (props) => {
 
       <div>
         <button
-          onClick={handleStepForward}
-          disabled={!isContinueValid()}
-          className="w-[416px]"
+          onClick={handleFirstStepSubmitButton}
+          // disabled={!isContinueValid()}
+          className="w-[416px] disabled:bg-gray-50"
         >
           Continue {step}/3
         </button>
