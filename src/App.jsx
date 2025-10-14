@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import Page2 from "./page2.jsx";
 import Page3 from "./Page3.jsx";
-import { StepOne } from "./page1.jsx";
+import { StepOne } from "./StepOne.jsx";
 import { Page4 } from "./page4.jsx";
 
 function App() {

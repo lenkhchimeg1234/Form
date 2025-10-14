@@ -8,54 +8,54 @@ export const Page2 = (props) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [confpassword, setConfpassword] = useState("");
-  const [emailerror, setEmailerror] = useState("");
-  const [phoneerror, setPhoneerror] = useState("");
-  const [passerror, setPasserror] = useState("");
-  const [conpasserror, setConpasserror] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [passError, setPassError] = useState("");
+  const [conPassError, setConPassError] = useState("");
 
   const handleEmail = (value) => {
     if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ||
       value.length === 0
     ) {
-      setEmailerror("Please provide a valid email address.");
+      setEmailError("Please provide a valid email address.");
     } else {
-      setEmailerror("");
+      setEmailError("");
     }
   };
   const handlePhone = (value) => {
     if (!/^[0-9]{7,8}$/.test(value)) {
-      setPhoneerror("Please enter a valid phone number.");
+      setPhoneError("Please enter a valid phone number.");
     } else {
-      setPhoneerror("");
+      setPhoneError("");
     }
   };
   const handlePass = (value) => {
     if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/.test(value)) {
-      setPasserror("Password must include letters and numbers.");
+      setPassError("Password must include letters and numbers.");
     } else {
-      setPasserror("");
+      setPassError("");
     }
   };
-  const handleConpass = (value) => {
-    console.log(confpassword, password);
+  const handleConPass = (value) => {
+    console.log(confPassword, password);
     if (value !== password) {
-      setConpasserror("Passwords do not match. Please try again.");
+      setConPassError("Passwords do not match. Please try again.");
     } else {
-      setConpasserror("");
+      setConPassError("");
     }
   };
   const isFormValid = () => {
     if (
-      emailerror === "" &&
+      emailError === "" &&
       email &&
-      phoneerror === "" &&
+      phoneError === "" &&
       phone &&
-      passerror === "" &&
+      passError === "" &&
       password &&
-      conpasserror === "" &&
-      confpassword
+      conPassError === "" &&
+      confPassword
     ) {
       return true;
     }
@@ -64,7 +64,7 @@ export const Page2 = (props) => {
     handleEmail("");
     handlePhone("");
     handlePass("");
-    handleConpass("");
+    handleConPass("");
   }, []);
 
   return (
@@ -88,8 +88,8 @@ export const Page2 = (props) => {
               handleEmail(e.target.value);
             }}
           />
-          {emailerror && (
-            <div className="text-red-600 text-[15px]">{emailerror}</div>
+          {emailError && (
+            <div className="text-red-600 text-[15px]">{emailError}</div>
           )}
 
           <div className="flex">
@@ -105,8 +105,8 @@ export const Page2 = (props) => {
               handlePhone(v);
             }}
           />
-          {phoneerror && (
-            <div className="text-red-600 text-[15px]">{phoneerror}</div>
+          {phoneError && (
+            <div className="text-red-600 text-[15px]">{phoneError}</div>
           )}
 
           <div className="flex">
@@ -116,13 +116,14 @@ export const Page2 = (props) => {
           <input
             placeholder="Password"
             value={password}
+            type="password"
             onChange={(e) => {
               setPassword(e.target.value);
               handlePass(e.target.value);
             }}
           />
-          {passerror && (
-            <div className="text-red-600 text-[15px]">{passerror}</div>
+          {passError && (
+            <div className="text-red-600 text-[15px]">{passError}</div>
           )}
           <div className="flex">
             <p>Confirm Password </p>
@@ -130,14 +131,15 @@ export const Page2 = (props) => {
           </div>
           <input
             placeholder="Confirm Password"
-            value={confpassword}
+            value={confPassword}
+            type="password"
             onChange={(e) => {
-              setConfpassword(e.target.value);
-              handleConpass(e.target.value);
+              setConfPassword(e.target.value);
+              handleConPass(e.target.value);
             }}
           />
-          {conpasserror && (
-            <div className="text-red-600 text-[15px]">{conpasserror}</div>
+          {conPassError && (
+            <div className="text-red-600 text-[15px]">{conPassError}</div>
           )}
         </div>
       </div>
