@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { PineconeLogo } from "./Icons/PineconeLogo";
+import { ContinueButtonIcon } from "./Icons/ContinueButtonIcon";
 
 export const StepOne = (props) => {
   const { handleStepForward, step } = props;
@@ -24,86 +25,119 @@ export const StepOne = (props) => {
     }
   };
   const handleErrors = () => {
-    const Errors = {};
-    if (!nameRegex.test(firstName) || firstName.length === 0) {
-      Errors.firstName =
+    const errors = {};
+    if (firstName.length === 0) {
+      errors.firstName = "Firstname is required";
+    } else if (!nameRegex.test(firstName)) {
+      errors.firstName =
         "First name cannot contain special characters or numbers.";
     }
-    if (!nameRegex.test(lastName) || lastName.length === 0) {
-      Errors.lastName =
+
+    console.log(errors, "errors");
+    if (lastName.length === 0) {
+      errors.lastName = "Lastname is required";
+    } else if (!nameRegex.test(lastName)) {
+      errors.lastName =
         "Last name cannot contain special characters or numbers.";
     }
-    if (!nameRegex.test(userName) || userName.length === 0) {
-      Errors.userName = "User name can only contain letters.";
+    if (userName.length === 0) {
+      errors.userName = "Username is required";
+    } else if (!nameRegex.test(userName)) {
+      errors.userName = "User name can only contain letters.";
     }
-    setFirstNameError(Errors.firstName || "");
-    setLastNameError(Errors.lastName || "");
-    setUserNameError(Errors.userName || "");
-    return Errors;
+    setFirstNameError(errors.firstName || "");
+    setLastNameError(errors.lastName || "");
+    setUserNameError(errors.userName || "");
+    return errors;
   };
+  // when firstName input changes, it call handleErrors function
   const handleStepOneContinueButton = () => {
-    const Errors = handleErrors();
-    if (Object.keys(Errors).length > 0) {
+    const errors = handleErrors();
+    if (Object.keys(errors).length > 0) {
       return;
     }
     handleStepForward();
   };
+  const inputBaseStyle =
+    "w-[416px] h-[44px] rounded-[8px] p-[12px] border text-[16px] focus:outline-none transition-colors duration-200";
+  const normalBorder =
+    "border-[1px] border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300";
+  const errorBorder =
+    "border-[1px] border-[rgba(225,73,66,1)] focus:border-[rgba(225,73,66,1)] focus:ring-1 focus:ring-red-300";
 
   return (
     <div className="flex flex-col justify-between items-center w-[480px] h-[655px] bg-white p-8 box-border">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2 ">
         <PineconeLogo />
-        <h1>Join Us! 😎 </h1>
-        <h2 className="text-gray-500 font-light">
+        <h1 className="font-inter font-semibold text-[26px]  tracking-[-0.03em] align-middle">
+          Join Us! 😎
+        </h1>
+        <h2
+          className="font-inter font-[400px] text-[#8E8E8E] text-[18px] tracking-[0em]  align-middle ;
+"
+        >
           Please provide all current information accurately.
         </h2>
         <div className="flex flex-col gap-1">
           <div className="flex">
-            <p>First name </p>
+            <p className="text-[14px] font-bold">First name </p>
             <p className="text-red-600">*</p>
           </div>
           <input
+            className={`${inputBaseStyle} ${
+              firstNameError ? errorBorder : normalBorder
+            }`}
             placeholder="First Name"
-            type="text"
             name="firstName"
             value={firstName}
             onChange={handleInputChange}
           />
           {firstNameError && (
-            <div className="text-red-600">{firstNameError}</div>
+            <div className="text-red-600 text-[14px]">{firstNameError}</div>
           )}
 
           <div className="flex">
-            <p>Last name </p>
+            <p className="text-[14px] font-bold">Last name </p>
             <p className="text-red-600">*</p>
           </div>
           <input
+            className={`${inputBaseStyle} ${
+              lastNameError ? errorBorder : normalBorder
+            }`}
             placeholder="Last Name"
-            type="text"
             name="lastName"
             value={lastName}
             onChange={handleInputChange}
           />
-          {lastNameError && <div className="text-red-600">{lastNameError}</div>}
+          {lastNameError && (
+            <div className="text-red-600 text-[14px]">{lastNameError}</div>
+          )}
 
           <div className="flex">
-            <p>User name </p>
+            <p className="text-[14px] font-bold">User name </p>
             <p className="text-red-600">*</p>
           </div>
           <input
+            className={`${inputBaseStyle} ${
+              userNameError ? errorBorder : normalBorder
+            }`}
             placeholder="User Name"
-            type="text"
             name="userName"
             value={userName}
             onChange={handleInputChange}
           />
-          {userNameError && <div className="text-red-600">{userNameError}</div>}
+          {userNameError && (
+            <div className="text-red-600 text-[14px]">{userNameError}</div>
+          )}
         </div>
       </div>
 
       <div>
-        <button onClick={handleStepOneContinueButton} className="w-[416px]">
-          Continue {step}/3
+        <button
+          className="w-[416px] rounded-[8px] border border-transparent px-[8px] py-[8px] bg-black text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
+          onClick={handleStepOneContinueButton}
+        >
+          Continue {step}/3 <ContinueButtonIcon />
         </button>
       </div>
     </div>
