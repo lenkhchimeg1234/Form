@@ -1,25 +1,29 @@
 import { useState } from "react";
 
-import Page2 from "./assets/Components/page2.jsx";
+import Page2 from "./assets/Components/Page2.jsx";
 import Page3 from "./assets/Components/Page3.jsx";
-import { StepOne } from "./assets/Components/StepOne.jsx";
-import { Page4 } from "./assets/Components/page4.jsx";
+import { Page1 } from "./assets/Components/Page1.jsx";
+import { Page4 } from "./assets/Components/Page4.jsx";
 
 function App() {
-  const [step, setStep] = useState(1);
+  const getCurrentStep = () => {
+    return Number(localStorage.getItem("currentStep"));
+  };
+  const [step, setStep] = useState(getCurrentStep() || 1);
 
   const handleStepForward = () => {
     setStep(step + 1);
   };
 
   const handleStepBackward = () => {
+    localStorage.setItem("currentStep", step - 1);
     setStep(step - 1);
   };
 
   return (
     <>
       {step === 1 && (
-        <StepOne handleStepForward={handleStepForward} step={step} />
+        <Page1 handleStepForward={handleStepForward} step={step} />
       )}
 
       {step === 2 && (

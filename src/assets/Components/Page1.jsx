@@ -1,19 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { PineconeLogo } from "../../Icons/PineconeLogo";
 import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
 
-export const StepOne = (props) => {
+export const Page1 = (props) => {
   const { handleStepForward, step } = props;
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [userName, setUserName] = useState("");
+  const getLocalStorage = () => {
+    const data = localStorage.getItem("data");
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return {
+        firstName: "",
+        lastName: "",
+        userName: "",
+      };
+    }
+  };
+  const data = getLocalStorage();
+  const [firstName, setFirstName] = useState(data.firstName);
+  const [lastName, setLastName] = useState(data.lastName);
+  const [userName, setUserName] = useState(data.userName);
   const nameRegex = /^[a-zA-Z]+$/;
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
   const [userNameError, setUserNameError] = useState("");
 
   const handleInputChange = (e) => {
+    handleErrors();
     const name = e.target.name;
     const value = e.target.value;
     if (name === "firstName") {
@@ -28,7 +42,7 @@ export const StepOne = (props) => {
     const errors = {};
     if (firstName.length === 0) {
       errors.firstName = "Firstname is required";
-    } else if (!nameRegex.test(firstName)) {
+    } else if (!nameRegex.test(firstName) || firstName.length > 0) {
       errors.firstName =
         "First name cannot contain special characters or numbers.";
     }
@@ -36,13 +50,13 @@ export const StepOne = (props) => {
     console.log(errors, "errors");
     if (lastName.length === 0) {
       errors.lastName = "Lastname is required";
-    } else if (!nameRegex.test(lastName)) {
+    } else if (!nameRegex.test(lastName) || lastName.length > 0) {
       errors.lastName =
         "Last name cannot contain special characters or numbers.";
     }
     if (userName.length === 0) {
       errors.userName = "Username is required";
-    } else if (!nameRegex.test(userName)) {
+    } else if (!nameRegex.test(userName) || userName.length > 0) {
       errors.userName = "User name can only contain letters.";
     }
     setFirstNameError(errors.firstName || "");
@@ -57,6 +71,15 @@ export const StepOne = (props) => {
       return;
     }
     handleStepForward();
+    localStorage.setItem(
+      "data",
+      JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        userName: userName,
+      })
+    );
+    localStorage.setItem("currentStep", step + 1);
   };
   const inputBaseStyle =
     "w-[416px] h-[44px] rounded-[8px] p-[12px] border text-[16px] focus:outline-none transition-colors duration-200";

@@ -4,9 +4,21 @@ import { BackButtonIcon } from "../../Icons/BackButtonIcon";
 import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
 export const Page2 = (props) => {
   const { handleStepForward, step, handleStepBackward } = props;
+  const getLocalStorage = () => {
+    const data = localStorage.getItem("dataTwo");
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return {
+        email: "",
+        phone: "",
+      };
+    }
+  };
 
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const data = getLocalStorage();
+  const [email, setEmail] = useState(data.email);
+  const [phone, setPhone] = useState(data.phone);
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -15,6 +27,7 @@ export const Page2 = (props) => {
   const [confPassError, setConfPassError] = useState("");
 
   const handleInputChange = (e) => {
+    handleErrors();
     const name = e.target.name;
     const value = e.target.value;
     if (name === "email") {
@@ -32,19 +45,21 @@ export const Page2 = (props) => {
     if (email.length === 0) {
       Errors.email = "Email is required.";
     } else if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) ||
+      email.length > 0
     ) {
       Errors.email = "Please provide a valid email address.";
     }
     if (phone.length === 0) {
       Errors.phone = "Phone number is required.";
-    } else if (!/^[0-9]{7,8}$/.test(phone)) {
+    } else if (!/^[0-9]{7,8}$/.test(phone) || phone.length > 0) {
       Errors.phone = "Please enter a valid phone number.";
     }
     if (password.length === 0) {
       Errors.password = "Password is required.";
     } else if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password) ||
+      password.length > 0
     ) {
       Errors.password =
         "Password must be at least 8 characters and contain uppercase letters, lowercase letters, and numbers.";
@@ -66,6 +81,14 @@ export const Page2 = (props) => {
       return;
     }
     handleStepForward();
+    localStorage.setItem(
+      "dataTwo",
+      JSON.stringify({
+        email: email,
+        phone: phone,
+      })
+    );
+    localStorage.setItem("currentStep", step + 1);
   };
   const inputBaseStyle =
     "w-[416px] h-[44px] rounded-[8px] p-[12px] border text-[16px] focus:outline-none transition-colors duration-200";
