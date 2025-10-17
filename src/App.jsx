@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-import "./App.css";
-import Page2 from "./page2.jsx";
-import Page3 from "./Page3.jsx";
-import { StepOne } from "./StepOne.jsx";
-import { Page4 } from "./page4.jsx";
+import Page2 from "./assets/Components/page2.jsx";
+import Page3 from "./assets/Components/Page3.jsx";
+import { StepOne } from "./assets/Components/StepOne.jsx";
+import { Page4 } from "./assets/Components/page4.jsx";
 
 function App() {
   const [step, setStep] = useState(1);

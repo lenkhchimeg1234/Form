@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { PineconeLogo } from "./Icons/PineconeLogo";
-import { ImageIcon } from "./Icons/ImageIcon";
-import { BackButtonIcon } from "./Icons/BackButtonIcon";
-import { ContinueButtonIcon } from "./Icons/ContinueButtonIcon";
-import "./App.css";
+import { PineconeLogo } from "../../Icons/PineconeLogo";
+import { ImageIcon } from "../../Icons/ImageIcon";
+import { BackButtonIcon } from "../../Icons/BackButtonIcon";
+import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
 
 export const Page3 = (props) => {
   const { handleStepForward, step, handleStepBackward } = props;
@@ -135,13 +134,13 @@ export const Page3 = (props) => {
       <div className=" flex gap-3">
         <button
           onClick={handleStepBackward}
-          className="w-[100px]  bg-white text-black-500 pt-auto rounded-[8px] border-1 border-black px-[8px] py-[8px] cursor-pointer font-inherit flex justify-center items-center gap-4"
+          className="w-[100px] bg-white hover:bg-[rgba(214,216,219,1)] text-black-500 pt-auto rounded-[8px] border-1 border-black hover:border-gray-300 px-[8px] py-[8px] cursor-pointer font-inherit flex justify-center items-center gap-4"
         >
           <BackButtonIcon /> Back
         </button>
         <button
           onClick={handlepage3ContinueButton}
-          className="w-[304px] pt-auto rounded-[8px] border border-transparent px-[8px] py-[8px] bg-black text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
+          className="w-[304px] pt-auto rounded-[8px] border border-transparent px-[8px] py-[8px] bg-black hover:opacity-70 text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
         >
           Continue {step}/3 <ContinueButtonIcon />
         </button>

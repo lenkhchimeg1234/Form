@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import { PineconeLogo } from "./Icons/PineconeLogo";
-import { BackButtonIcon } from "./Icons/BackButtonIcon";
-import { ContinueButtonIcon } from "./Icons/ContinueButtonIcon";
+import { PineconeLogo } from "../../Icons/PineconeLogo";
+import { BackButtonIcon } from "../../Icons/BackButtonIcon";
+import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
 export const Page2 = (props) => {
   const { handleStepForward, step, handleStepBackward } = props;
 
@@ -31,19 +30,19 @@ export const Page2 = (props) => {
   const handleErrors = () => {
     const Errors = {};
     if (email.length === 0) {
-      ("Email is required.");
+      Errors.email = "Email is required.";
     } else if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
     ) {
       Errors.email = "Please provide a valid email address.";
     }
     if (phone.length === 0) {
-      ("Phone number is required.");
+      Errors.phone = "Phone number is required.";
     } else if (!/^[0-9]{7,8}$/.test(phone)) {
       Errors.phone = "Please enter a valid phone number.";
     }
     if (password.length === 0) {
-      ("Password is required.");
+      Errors.password = "Password is required.";
     } else if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)
     ) {
@@ -51,7 +50,7 @@ export const Page2 = (props) => {
         "Password must be at least 8 characters and contain uppercase letters, lowercase letters, and numbers.";
     }
     if (confPassword.length === 0) {
-      ("Confirm Password is required");
+      Errors.confPassword = "Password is required.";
     } else if (confPassword !== password) {
       Errors.confPassword = "Passwords do not match. Please try again.";
     }
@@ -162,13 +161,13 @@ export const Page2 = (props) => {
       <div className=" flex gap-3">
         <button
           onClick={handleStepBackward}
-          className="w-[100px] bg-white text-black-500 pt-auto rounded-[8px] border-1 border-black px-[8px] py-[8px] cursor-pointer font-inherit flex justify-center items-center gap-4"
+          className="w-[100px] bg-white hover:bg-[rgba(214,216,219,1)] text-black-500 pt-auto rounded-[8px] border-1 border-black hover:border-gray-300 px-[8px] py-[8px] cursor-pointer font-inherit flex justify-center items-center gap-4"
         >
           <BackButtonIcon /> Back
         </button>
         <button
           onClick={handlepage2ContinueButton}
-          className="w-[304px] rounded-[8px] border border-transparent px-[8px] py-[8px] bg-black text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
+          className="w-[304px] rounded-[8px] border border-transparent px-[8px] py-[8px] bg-black hover:opacity-70 text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
         >
           Continue {step}/3 <ContinueButtonIcon />
         </button>

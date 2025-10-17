@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import { PineconeLogo } from "./Icons/PineconeLogo";
-import { ContinueButtonIcon } from "./Icons/ContinueButtonIcon";
+
+import { PineconeLogo } from "../../Icons/PineconeLogo";
+import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
 
 export const StepOne = (props) => {
   const { handleStepForward, step } = props;
@@ -50,7 +50,7 @@ export const StepOne = (props) => {
     setUserNameError(errors.userName || "");
     return errors;
   };
-  // when firstName input changes, it call handleErrors function
+
   const handleStepOneContinueButton = () => {
     const errors = handleErrors();
     if (Object.keys(errors).length > 0) {
@@ -134,7 +134,7 @@ export const StepOne = (props) => {
 
       <div>
         <button
-          className="w-[416px] rounded-[8px] border border-transparent px-[8px] py-[8px] bg-black text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
+          className="w-[416px] rounded-[8px] border border-transparent px-[8px] py-[8px]  bg-black hover:opacity-70 text-white cursor-pointer font-inherit flex justify-center items-center gap-4"
           onClick={handleStepOneContinueButton}
         >
           Continue {step}/3 <ContinueButtonIcon />
