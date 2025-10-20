@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { PineconeLogo } from "../../Icons/PineconeLogo";
-import { BackButtonIcon } from "../../Icons/BackButtonIcon";
-import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
+import { PineconeLogo } from "../Icons/PineconeLogo";
+import { BackButtonIcon } from "../Icons/BackButtonIcon";
+import { ContinueButtonIcon } from "../Icons/ContinueButtonIcon";
 export const Page2 = (props) => {
   const { handleStepForward, step, handleStepBackward } = props;
   const getLocalStorage = () => {
