@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Page3 from "./assets/Components/Page3.jsx";
-import { Page1 } from "./assets/Components/Page1.jsx";
-import { Page4 } from "./assets/Components/Page4.jsx";
+import Page3 from "./assets/Page3.jsx";
+import { Page1 } from "./assets/Page1.jsx";
+import { Page4 } from "./assets/Page4.jsx";
 import { Page2 } from "./assets/Page2.jsx";
 
 function App() {
