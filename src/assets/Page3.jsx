@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { PineconeLogo } from "../../Icons/PineconeLogo";
-import { ImageIcon } from "../../Icons/ImageIcon";
-import { BackButtonIcon } from "../../Icons/BackButtonIcon";
-import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
+import { PineconeLogo } from "../Icons/PineconeLogo";
+import { ImageIcon } from "../Icons/ImageIcon";
+import { BackButtonIcon } from "../Icons/BackButtonIcon";
+import { ContinueButtonIcon } from "../Icons/ContinueButtonIcon";
 
 export const Page3 = (props) => {
   const { handleStepForward, step, handleStepBackward } = props;

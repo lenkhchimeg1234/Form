@@ -1,4 +1,4 @@
-import { PineconeLogo } from "../../Icons/PineconeLogo";
+import { PineconeLogo } from "../Icons/PineconeLogo";
 
 export function Page4() {
   return (

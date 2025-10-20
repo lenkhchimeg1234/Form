@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { PineconeLogo } from "../../Icons/PineconeLogo";
-import { ContinueButtonIcon } from "../../Icons/ContinueButtonIcon";
+import { PineconeLogo } from "../Icons/PineconeLogo";
+import { ContinueButtonIcon } from "../Icons/ContinueButtonIcon";
 
 export const Page1 = (props) => {
   const { handleStepForward, step } = props;
